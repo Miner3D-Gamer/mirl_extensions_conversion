@@ -6,7 +6,7 @@ repository.workspace = true
 
 [dependencies]
 mirl_extensions_core = { version = "0.0.0-alpha" }
-mirl_core = { version = "0.0.0-alpha" }
+# mirl_core = { version = "0.0.0-alpha" }
 
 num-bigint = { version = "0.4.2", optional = true }
 num-bigfloat = { version = "1.7", optional = true }
@@ -16,7 +16,7 @@ mirl_values_core = { version = "0.0.0-alpha", optional = true }
 
 ### GLFW
 glfw = { version = "0.51.0", optional = true }
-gl = { version = "0.14.0", optional = true }
+# gl = { version = "0.14.0", optional = true }
 
 mirl_graphics = { version = "0.0.0-alpha", optional = true }
 mirl_buffer = { version = "0.0.0-alpha", optional = true }
@@ -46,7 +46,12 @@ mirl_values = ["dep:mirl_values_core", "bigint", "bigfloat"]
 bigint = ["dep:num-bigint", "dep:num-traits"]
 bigfloat = ["dep:num-bigfloat"]
 
-glfw = ["dep:glfw", "dep:gl", "std", "mirl_graphics", "mirl_buffer"]
+glfw = [
+    "dep:glfw",      #"dep:gl",
+    "std",
+    "mirl_graphics",
+    "mirl_buffer",
+]
 
 ### Support for hashmap libs
 indexmap = ["dep:indexmap", "std", "mirl_extensions_core/indexmap"]
