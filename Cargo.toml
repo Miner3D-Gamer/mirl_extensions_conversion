@@ -6,11 +6,9 @@ repository.workspace = true
 [features]
 default = ["std"]
 std = ["ascii/std"]
-
 mirl_values = ["dep:mirl_values_core", "bigint", "bigfloat"]
 bigint = ["dep:num-bigint", "dep:num-traits"]
 bigfloat = ["dep:num-bigfloat"]
-
 glfw = [
     "dep:glfw",
     #"dep:gl",
@@ -18,27 +16,21 @@ glfw = [
     "mirl_graphics",
     "mirl_buffer",
 ]
-
 ### Support for hashmap libs
 indexmap = ["dep:indexmap", "std", "mirl_extensions_core/indexmap"]
 dashmap = ["dep:dashmap", "std", "mirl_extensions_core/dashmap"]
 masstree = ["dep:masstree", "std", "mirl_extensions_core/masstree"]
-
 # Async
 tokio = ["dep:tokio"]
-
 ascii = ["dep:ascii"]
 
 [dependencies]
-
 ### Text
 ascii = { version = "1.1", optional = true }
 ### Like a HashMap but concurrent
 dashmap = { version = "6.1", optional = true, default-features = false }
-
 ### GLFW
 glfw = { version = "0.51.0", optional = true }
-
 ### Like a HashMap but it remembers in what order elements were inserted
 indexmap = { version = "2.14", optional = true, default-features = false, features = [
     "std",
@@ -50,16 +42,12 @@ masstree = { version = "0.9", optional = true, default-features = false }
 mirl_buffer = { version = "0.0.0-alpha", optional = true }
 mirl_extensions_core = { version = "0.0.0-alpha" }
 # gl = { version = "0.14.0", optional = true }
-
 mirl_graphics = { version = "0.0.0-alpha", optional = true }
-
 mirl_values_core = { version = "0.0.0-alpha", optional = true }
 num-bigfloat = { version = "1.7", optional = true }
 # mirl_core = { version = "0.0.0-alpha" }
-
 num-bigint = { version = "0.5", optional = true }
 num-traits = { version = "0.2.19", optional = true }
-
 ### Concurrency
 tokio = { version = "1.52", optional = true, features = ["sync"] }
 
