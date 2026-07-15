@@ -5,10 +5,19 @@ edition.workspace = true
 repository.workspace = true
 [features]
 default = ["std"]
-std = ["ascii/std"]
+std = [
+    "ascii?/std",
+    "indexmap?/std",
+    "mirl_buffer?/std",
+    "mirl_extensions_core/std",
+    "mirl_graphics?/std",
+    "num-bigfloat?/std",
+    "num-bigint?/std",
+    "num-traits?/std",
+]
 mirl_values = ["dep:mirl_values_core", "bigint", "bigfloat"]
-bigint = ["dep:num-bigint", "dep:num-traits"]
-bigfloat = ["dep:num-bigfloat"]
+bigint = ["dep:num-bigint", "dep:num-traits", "mirl_extensions_core/bigint"]
+bigfloat = ["dep:num-bigfloat", "mirl_extensions_core/bigfloat"]
 glfw = [
     "dep:glfw",
     #"dep:gl",

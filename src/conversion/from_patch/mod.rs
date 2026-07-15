@@ -7,7 +7,7 @@ pub const trait IntoPatch<T>: Sized {
     /// A custom from to bypass rusts orphan rule
     fn into_value(self) -> T;
 }
-impl<T: Sized + [const] FromPatch<O>, O> const IntoPatch<T> for O {
+const impl<T: Sized + [const] FromPatch<O>, O> IntoPatch<T> for O {
     fn into_value(self) -> T {
         T::from_value(self)
     }
@@ -51,9 +51,7 @@ impl<T1, T2: FromPatch<T1>> FromPatch<Option<T1>> for Option<T2> {
     }
 }
 
-impl<T1, T2: FromPatch<T1>, E1, E2: FromPatch<E1>> FromPatch<Result<T1, E1>>
-    for Result<T2, E2>
-{
+impl<T1, T2: FromPatch<T1>, E1, E2: FromPatch<E1>> FromPatch<Result<T1, E1>> for Result<T2, E2> {
     fn from_value(value: Result<T1, E1>) -> Self {
         match value {
             Err(e) => Err(E2::from_value(e)),

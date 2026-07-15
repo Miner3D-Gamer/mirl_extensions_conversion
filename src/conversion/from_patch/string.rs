@@ -11,7 +11,7 @@ impl FromPatch<&str> for Vec<u8> {
         v.as_bytes().to_vec()
     }
 }
-impl const FromPatch<Self> for String {
+const impl FromPatch<Self> for String {
     fn from_value(v: Self) -> Self {
         v
     }

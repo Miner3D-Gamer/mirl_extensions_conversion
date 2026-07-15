@@ -15,7 +15,7 @@ macro_rules! impl_from_patch_self {
         $(
             // impl crate::extension::ImplFromPatchForSelf for $t {}
 
-            impl const $crate::FromPatch<$t> for $t {
+            const impl $crate::FromPatch<$t> for $t {
                  fn from_value(value: $t) -> Self {
                     value
                 }
@@ -24,8 +24,7 @@ macro_rules! impl_from_patch_self {
     };
 }
 impl_from_patch_self!(
-    u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f16, f32,
-    f64, f128, bool, char
+    u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f16, f32, f64, f128, bool, char
 );
 mirl_extensions_core::impl_empty_trait!(AutoImplTryFromPatch for u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize,f16, f32, f64,f128, bool, char);
 
@@ -41,7 +40,7 @@ mirl_extensions_core::impl_empty_trait!(AutoImplTryFromPatch for u8, u16, u32, u
 /// `impl_try_from_patch_float(float, int1, int2, int3)`
 // TODO:
 // the `FloatToInt` trait is not yet const
-// Make these impl const again as soon as rust nightly allows for const `FloatToInt`
+// Make these const impl again as soon as rust nightly allows for const `FloatToInt`
 #[macro_export]
 macro_rules! impl_try_from_patch_float {
     ($float:ty, $($int:ty),*) => {

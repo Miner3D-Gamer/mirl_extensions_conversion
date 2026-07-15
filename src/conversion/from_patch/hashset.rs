@@ -8,11 +8,8 @@ impl<T1: IntoPatch<T2>, T2, S: ::std::hash::BuildHasher + Default>
     }
 }
 
-impl<
-    T1: IntoPatch<T2>,
-    T2: core::hash::Hash + Eq,
-    S: ::std::hash::BuildHasher + Default,
-> FromPatch<Vec<T1>> for std::collections::HashSet<T2, S>
+impl<T1: IntoPatch<T2>, T2: core::hash::Hash + Eq, S: ::std::hash::BuildHasher + Default>
+    FromPatch<Vec<T1>> for std::collections::HashSet<T2, S>
 {
     fn from_value(v: Vec<T1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S::default());
@@ -28,8 +25,7 @@ impl<
     T2: core::hash::Hash + Eq,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashSet<T1, S1>>
-    for std::collections::HashSet<T2, S2>
+> FromPatch<std::collections::HashSet<T1, S1>> for std::collections::HashSet<T2, S2>
 {
     fn from_value(v: std::collections::HashSet<T1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -47,8 +43,7 @@ impl<
     V2: core::hash::Hash + Eq,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashMap<K1, V1, S1>>
-    for std::collections::HashSet<(K2, V2), S2>
+> FromPatch<std::collections::HashMap<K1, V1, S1>> for std::collections::HashSet<(K2, V2), S2>
 {
     fn from_value(v: std::collections::HashMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -66,8 +61,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashSet<(K1, V1), S1>>
-    for std::collections::HashMap<K2, V2, S2>
+> FromPatch<std::collections::HashSet<(K1, V1), S1>> for std::collections::HashMap<K2, V2, S2>
 {
     fn from_value(v: std::collections::HashSet<(K1, V1), S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -86,8 +80,7 @@ impl<
     V2: core::hash::Hash + Eq,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexMap<K1, V1, S1>>
-    for std::collections::HashSet<(K2, V2), S2>
+> FromPatch<indexmap::IndexMap<K1, V1, S1>> for std::collections::HashSet<(K2, V2), S2>
 {
     fn from_value(v: indexmap::IndexMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -106,8 +99,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashSet<(K1, V1), S1>>
-    for indexmap::IndexMap<K2, V2, S2>
+> FromPatch<std::collections::HashSet<(K1, V1), S1>> for indexmap::IndexMap<K2, V2, S2>
 {
     fn from_value(v: std::collections::HashSet<(K1, V1), S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -146,7 +138,9 @@ impl<
 > FromPatch<indexmap::IndexSet<(K1, V1), S>> for Vec<(K2, V2)>
 {
     fn from_value(v: indexmap::IndexSet<(K1, V1), S>) -> Self {
-        v.into_iter().map(|(k, v)| (k.into_value(), v.into_value())).collect()
+        v.into_iter()
+            .map(|(k, v)| (k.into_value(), v.into_value()))
+            .collect()
     }
 }
 
@@ -158,8 +152,7 @@ impl<
     V2: core::hash::Hash + Eq,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashMap<K1, V1, S1>>
-    for indexmap::IndexSet<(K2, V2), S2>
+> FromPatch<std::collections::HashMap<K1, V1, S1>> for indexmap::IndexSet<(K2, V2), S2>
 {
     fn from_value(v: std::collections::HashMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -178,8 +171,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexSet<(K1, V1), S1>>
-    for std::collections::HashMap<K2, V2, S2>
+> FromPatch<indexmap::IndexSet<(K1, V1), S1>> for std::collections::HashMap<K2, V2, S2>
 {
     fn from_value(v: indexmap::IndexSet<(K1, V1), S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -198,8 +190,7 @@ impl<
     V2: core::hash::Hash + Eq,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexMap<K1, V1, S1>>
-    for indexmap::IndexSet<(K2, V2), S2>
+> FromPatch<indexmap::IndexMap<K1, V1, S1>> for indexmap::IndexSet<(K2, V2), S2>
 {
     fn from_value(v: indexmap::IndexMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -218,8 +209,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexSet<(K1, V1), S1>>
-    for indexmap::IndexMap<K2, V2, S2>
+> FromPatch<indexmap::IndexSet<(K1, V1), S1>> for indexmap::IndexMap<K2, V2, S2>
 {
     fn from_value(v: indexmap::IndexSet<(K1, V1), S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -237,16 +227,12 @@ impl<
     K2: core::hash::Hash + Eq,
     V2: core::hash::Hash + Eq,
     S: ::std::hash::BuildHasher + Default,
-> FromPatch<dashmap::DashMap<K1, V1>>
-    for std::collections::HashSet<(K2, V2), S>
+> FromPatch<dashmap::DashMap<K1, V1>> for std::collections::HashSet<(K2, V2), S>
 {
     fn from_value(v: dashmap::DashMap<K1, V1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S::default());
         for r in &v {
-            new.insert((
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            ));
+            new.insert((r.key().clone().into_value(), r.value().clone().into_value()));
         }
         new
     }
@@ -281,10 +267,7 @@ impl<
     fn from_value(v: dashmap::DashMap<K1, V1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S::default());
         for r in &v {
-            new.insert((
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            ));
+            new.insert((r.key().clone().into_value(), r.value().clone().into_value()));
         }
         new
     }
@@ -315,8 +298,7 @@ impl<
     V1: core::hash::Hash + Eq + IntoPatch<V2>,
     V2: std::marker::Sync + std::marker::Send + 'static + masstree::InlineBits,
     S: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashSet<(T1, V1), S>>
-    for masstree::MassTree15Inline<V2>
+> FromPatch<std::collections::HashSet<(T1, V1), S>> for masstree::MassTree15Inline<V2>
 {
     fn from_value(v: std::collections::HashSet<(T1, V1), S>) -> Self {
         let new = Self::new();
@@ -386,8 +368,7 @@ impl<
     V1: core::hash::Hash + Eq + IntoPatch<V2>,
     V2: std::marker::Sync + std::marker::Send + 'static + masstree::InlineBits,
     S: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexSet<(K1, V1), S>>
-    for masstree::MassTree15Inline<V2>
+> FromPatch<indexmap::IndexSet<(K1, V1), S>> for masstree::MassTree15Inline<V2>
 {
     fn from_value(v: indexmap::IndexSet<(K1, V1), S>) -> Self {
         let new = Self::new();

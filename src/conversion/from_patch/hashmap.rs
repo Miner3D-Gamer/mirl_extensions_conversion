@@ -1,12 +1,7 @@
 use crate::{FromPatch, IntoPatch};
 
-impl<
-    K1: IntoPatch<K2>,
-    V1: IntoPatch<V2>,
-    K2,
-    V2,
-    S: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashMap<K1, V1, S>> for Vec<(K2, V2)>
+impl<K1: IntoPatch<K2>, V1: IntoPatch<V2>, K2, V2, S: ::std::hash::BuildHasher + Default>
+    FromPatch<std::collections::HashMap<K1, V1, S>> for Vec<(K2, V2)>
 {
     fn from_value(v: std::collections::HashMap<K1, V1, S>) -> Self {
         let mut new = Self::new();
@@ -41,8 +36,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashMap<K1, V1, S1>>
-    for std::collections::HashMap<K2, V2, S2>
+> FromPatch<std::collections::HashMap<K1, V1, S1>> for std::collections::HashMap<K2, V2, S2>
 {
     fn from_value(v: std::collections::HashMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -54,13 +48,8 @@ impl<
 }
 
 #[cfg(feature = "indexmap")]
-impl<
-    K1: IntoPatch<K2>,
-    V1: IntoPatch<V2>,
-    K2,
-    V2,
-    S: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexMap<K1, V1, S>> for Vec<(K2, V2)>
+impl<K1: IntoPatch<K2>, V1: IntoPatch<V2>, K2, V2, S: ::std::hash::BuildHasher + Default>
+    FromPatch<indexmap::IndexMap<K1, V1, S>> for Vec<(K2, V2)>
 {
     fn from_value(v: indexmap::IndexMap<K1, V1, S>) -> Self {
         let mut new = Self::new();
@@ -100,18 +89,15 @@ impl<
     fn from_value(v: dashmap::DashMap<K1, V1>) -> Self {
         let new = Self::with_capacity(v.len());
         for r in &v {
-            new.insert(
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            );
+            new.insert(r.key().clone().into_value(), r.value().clone().into_value());
         }
         new
     }
 }
 
 #[cfg(feature = "dashmap")]
-impl<K1: IntoPatch<K2>, V1: IntoPatch<V2>, K2: std::hash::Hash + Eq, V2>
-    FromPatch<Vec<(K1, V1)>> for dashmap::DashMap<K2, V2>
+impl<K1: IntoPatch<K2>, V1: IntoPatch<V2>, K2: std::hash::Hash + Eq, V2> FromPatch<Vec<(K1, V1)>>
+    for dashmap::DashMap<K2, V2>
 {
     fn from_value(v: Vec<(K1, V1)>) -> Self {
         let new = Self::with_capacity(v.len());
@@ -130,8 +116,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashMap<K1, V1, S1>>
-    for indexmap::IndexMap<K2, V2, S2>
+> FromPatch<std::collections::HashMap<K1, V1, S1>> for indexmap::IndexMap<K2, V2, S2>
 {
     fn from_value(v: std::collections::HashMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -150,8 +135,7 @@ impl<
     V2,
     S1: ::std::hash::BuildHasher + Default,
     S2: ::std::hash::BuildHasher + Default,
-> FromPatch<indexmap::IndexMap<K1, V1, S1>>
-    for std::collections::HashMap<K2, V2, S2>
+> FromPatch<indexmap::IndexMap<K1, V1, S1>> for std::collections::HashMap<K2, V2, S2>
 {
     fn from_value(v: indexmap::IndexMap<K1, V1, S1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S2::default());
@@ -211,10 +195,7 @@ impl<
     fn from_value(v: dashmap::DashMap<K1, V1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S::default());
         for r in &v {
-            new.insert(
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            );
+            new.insert(r.key().clone().into_value(), r.value().clone().into_value());
         }
         new
     }
@@ -232,10 +213,7 @@ impl<
     fn from_value(v: dashmap::DashMap<K1, V1>) -> Self {
         let mut new = Self::with_capacity_and_hasher(v.len(), S::default());
         for r in &v {
-            new.insert(
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            );
+            new.insert(r.key().clone().into_value(), r.value().clone().into_value());
         }
         new
     }
@@ -260,20 +238,13 @@ impl<
 }
 
 #[cfg(feature = "dashmap")]
-impl<
-    K1: std::cmp::Eq + std::hash::Hash + Clone + IntoPatch<K2>,
-    V1: Clone + IntoPatch<V2>,
-    K2,
-    V2,
-> FromPatch<dashmap::DashMap<K1, V1>> for Vec<(K2, V2)>
+impl<K1: std::cmp::Eq + std::hash::Hash + Clone + IntoPatch<K2>, V1: Clone + IntoPatch<V2>, K2, V2>
+    FromPatch<dashmap::DashMap<K1, V1>> for Vec<(K2, V2)>
 {
     fn from_value(v: dashmap::DashMap<K1, V1>) -> Self {
         let mut new = Self::with_capacity(v.len());
         for r in &v {
-            new.push((
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            ));
+            new.push((r.key().clone().into_value(), r.value().clone().into_value()));
         }
         new
     }
@@ -340,8 +311,7 @@ impl<
     V1: IntoPatch<V2>,
     V2: std::marker::Sync + std::marker::Send + 'static + masstree::InlineBits,
     S: ::std::hash::BuildHasher + Default,
-> FromPatch<std::collections::HashMap<K, V1, S>>
-    for masstree::MassTree15Inline<V2>
+> FromPatch<std::collections::HashMap<K, V1, S>> for masstree::MassTree15Inline<V2>
 {
     fn from_value(v: std::collections::HashMap<K, V1, S>) -> Self {
         let new = Self::new();
@@ -397,10 +367,7 @@ impl<
     fn from_value(v: dashmap::DashMap<K, V1>) -> Self {
         let new = Self::new();
         for r in &v {
-            new.insert(
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            );
+            new.insert(r.key().clone().into_value(), r.value().clone().into_value());
         }
         new
     }
@@ -417,10 +384,7 @@ impl<
     fn from_value(v: dashmap::DashMap<K, V1>) -> Self {
         let new = Self::new();
         for r in &v {
-            new.insert(
-                r.key().clone().into_value(),
-                r.value().clone().into_value(),
-            );
+            new.insert(r.key().clone().into_value(), r.value().clone().into_value());
         }
         new
     }

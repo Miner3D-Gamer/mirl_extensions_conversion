@@ -6,7 +6,7 @@ pub const trait TryIntoPatch<T>: Sized {
     /// A custom from to bypass rusts orphan rule
     fn try_into_value(self) -> Option<T>;
 }
-impl<T: Sized + [const] TryFromPatch<O>, O> const TryIntoPatch<T> for O {
+const impl<T: Sized + [const] TryFromPatch<O>, O> TryIntoPatch<T> for O {
     default fn try_into_value(self) -> Option<T> {
         T::try_from_value(self)
     }

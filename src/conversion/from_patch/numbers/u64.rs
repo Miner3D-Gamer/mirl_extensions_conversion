@@ -1,35 +1,35 @@
 // u64
-impl const FromPatch<u64> for i128 {
+const impl FromPatch<u64> for i128 {
     fn from_value(v: u64) -> Self {
         v as Self
     }
 }
-impl const FromPatch<u64> for u128 {
+const impl FromPatch<u64> for u128 {
     fn from_value(v: u64) -> Self {
         v as Self
     }
 }
-impl const FromPatch<u64> for usize {
+const impl FromPatch<u64> for usize {
     fn from_value(v: u64) -> Self {
         v as Self
     }
 }
-impl const FromPatch<u64> for f32 {
+const impl FromPatch<u64> for f32 {
     fn from_value(v: u64) -> Self {
         v as Self
     }
 }
-impl const FromPatch<u64> for f64 {
+const impl FromPatch<u64> for f64 {
     fn from_value(v: u64) -> Self {
         v as Self
     }
 }
-impl const FromPatch<u64> for f16 {
+const impl FromPatch<u64> for f16 {
     fn from_value(v: u64) -> Self {
         v as Self
     }
 }
-impl const FromPatch<u64> for f128 {
+const impl FromPatch<u64> for f128 {
     fn from_value(v: u64) -> Self {
         v as Self
     }
