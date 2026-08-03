@@ -640,3 +640,206 @@ impl<
         )
     }
 }
+
+impl<T> FromPatch<()> for [T; 0] {
+    fn from_value((): ()) -> Self {
+        []
+    }
+}
+
+impl<T> FromPatch<(T,)> for [T; 1] {
+    fn from_value(value: (T,)) -> Self {
+        [value.0]
+    }
+}
+
+impl<T> FromPatch<(T, T)> for [T; 2] {
+    fn from_value(value: (T, T)) -> Self {
+        [value.0, value.1]
+    }
+}
+
+impl<T> FromPatch<(T, T, T)> for [T; 3] {
+    fn from_value(value: (T, T, T)) -> Self {
+        [value.0, value.1, value.2]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T)> for [T; 4] {
+    fn from_value(value: (T, T, T, T)) -> Self {
+        [value.0, value.1, value.2, value.3]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T)> for [T; 5] {
+    fn from_value(value: (T, T, T, T, T)) -> Self {
+        [value.0, value.1, value.2, value.3, value.4]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T)> for [T; 6] {
+    fn from_value(value: (T, T, T, T, T, T)) -> Self {
+        [value.0, value.1, value.2, value.3, value.4, value.5]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T)> for [T; 7] {
+    fn from_value(value: (T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T)> for [T; 8] {
+    fn from_value(value: (T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T)> for [T; 9] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T)> for [T; 10] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T, T)> for [T; 11] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9, value.10,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T, T, T)> for [T; 12] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9, value.10, value.11,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T, T, T, T)> for [T; 13] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9, value.10, value.11, value.12,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T, T, T, T, T)> for [T; 14] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9, value.10, value.11, value.12, value.13,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)> for [T; 15] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9, value.10, value.11, value.12, value.13, value.14,
+        ]
+    }
+}
+
+impl<T> FromPatch<(T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)> for [T; 16] {
+    fn from_value(value: (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)) -> Self {
+        [
+            value.0, value.1, value.2, value.3, value.4, value.5, value.6, value.7, value.8,
+            value.9, value.10, value.11, value.12, value.13, value.14, value.15,
+        ]
+    }
+}
+impl<T> FromPatch<[T; 0]> for () {
+    fn from_value(_: [T; 0]) -> Self {}
+}
+impl<T> FromPatch<[T; 1]> for (T,) {
+    fn from_value(value: [T; 1]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 2]> for (T, T) {
+    fn from_value(value: [T; 2]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 3]> for (T, T, T) {
+    fn from_value(value: [T; 3]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 4]> for (T, T, T, T) {
+    fn from_value(value: [T; 4]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 5]> for (T, T, T, T, T) {
+    fn from_value(value: [T; 5]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 6]> for (T, T, T, T, T, T) {
+    fn from_value(value: [T; 6]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 7]> for (T, T, T, T, T, T, T) {
+    fn from_value(value: [T; 7]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 8]> for (T, T, T, T, T, T, T, T) {
+    fn from_value(value: [T; 8]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 9]> for (T, T, T, T, T, T, T, T, T) {
+    fn from_value(value: [T; 9]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 10]> for (T, T, T, T, T, T, T, T, T, T) {
+    fn from_value(value: [T; 10]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 11]> for (T, T, T, T, T, T, T, T, T, T, T) {
+    fn from_value(value: [T; 11]) -> Self {
+        value.into()
+    }
+}
+
+impl<T> FromPatch<[T; 12]> for (T, T, T, T, T, T, T, T, T, T, T, T) {
+    fn from_value(value: [T; 12]) -> Self {
+        value.into()
+    }
+}
