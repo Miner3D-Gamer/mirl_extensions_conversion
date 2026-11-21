@@ -7,8 +7,8 @@
 //! ---
 //!
 //! It also houses the [`BoundsFitInBounds`] math trait
-#![feature(f128)]
-#![feature(f16)]
+#![cfg_attr(feature = "f128", feature(f128))]
+#![cfg_attr(feature = "f16", feature(f16))]
 #![feature(const_trait_impl)]
 #![allow(incomplete_features)] // specialization has not yet been added by rust.
 #![feature(specialization)]

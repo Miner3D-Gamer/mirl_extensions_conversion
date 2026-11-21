@@ -34,11 +34,13 @@ const impl FromPatch<u32> for f64 {
         v as Self
     }
 }
+#[cfg(feature = "f16")]
 const impl FromPatch<u32> for f16 {
     fn from_value(v: u32) -> Self {
         v as Self
     }
 }
+#[cfg(feature = "f128")]
 const impl FromPatch<u32> for f128 {
     fn from_value(v: u32) -> Self {
         v as Self

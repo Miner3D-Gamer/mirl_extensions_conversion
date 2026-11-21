@@ -2,9 +2,28 @@
 name = "mirl_extensions_conversion"
 version = "0.0.0-alpha"
 edition = "2024"
-repository.workspace = true
+repository = "https://github.com/Miner3D-Gamer/mirl_extensions_conversion"
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+maintenance.workspace = true
+
 [features]
 default = ["std"]
+all = [
+    "mirl_values",
+    "bigint",
+    "bigfloat",
+    "glfw",
+    "indexmap",
+    "dashmap",
+    "masstree",
+    "tokio",
+    "ascii",
+    "f128",
+    "f16",
+]
+_checking = ["all"]
 std = [
     "ascii?/std",
     "indexmap?/std",
@@ -33,6 +52,9 @@ masstree = ["dep:masstree", "std", "mirl_extensions_core/masstree"]
 tokio = ["dep:tokio"]
 ascii = ["dep:ascii"]
 
+f128 = ["mirl_extensions_core/f128"]
+f16 = ["mirl_extensions_core/f16"]
+
 [dependencies]
 ### Text
 ascii = { version = "1.1", optional = true }
@@ -53,10 +75,13 @@ mirl_extensions_core = { version = "0.0.0-alpha" }
 # gl = { version = "0.14.0", optional = true }
 mirl_graphics = { version = "0.0.0-alpha", optional = true }
 mirl_values_core = { version = "0.0.0-alpha", optional = true }
-num-bigfloat = { version = "1.7", optional = true }
+num-bigfloat = { version = "1.7", optional = true, default-features = false, features = [
+    "std",
+    "num-traits",
+] }
 # mirl_core = { version = "0.0.0-alpha" }
 num-bigint = { version = "0.5", optional = true }
-num-traits = { version = "0.2.19", optional = true, no_default_features = true }
+num-traits = { version = "0.2.19", optional = true }
 ### Concurrency
 tokio = { version = "1.53", optional = true, features = ["sync"] }
 

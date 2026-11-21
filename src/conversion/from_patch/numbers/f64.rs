@@ -1,10 +1,12 @@
 // f64
 
+#[cfg(feature = "f128")]
 const impl FromPatch<f64> for f128 {
     fn from_value(v: f64) -> Self {
         v as Self
     }
 }
+#[cfg(feature = "f16")]
 const impl FromPatch<f64> for f16 {
     fn from_value(v: f64) -> Self {
         v as Self

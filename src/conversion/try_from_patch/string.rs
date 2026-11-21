@@ -195,24 +195,28 @@ impl TryFromPatch<&str> for f64 {
         v.parse().ok()
     }
 }
+#[cfg(feature = "f128")]
 impl TryFromPatch<String> for f128 {
     fn try_from_value(v: String) -> Option<Self> {
         v.parse::<f64>().ok().map(|x| x as Self) // TODO: Replace with native call once available
     }
 }
 
+#[cfg(feature = "f128")]
 impl TryFromPatch<&str> for f128 {
     fn try_from_value(v: &str) -> Option<Self> {
         v.parse::<f64>().ok().map(|x| x as Self)
     }
 }
 
+#[cfg(feature = "f16")]
 impl TryFromPatch<String> for f16 {
     fn try_from_value(v: String) -> Option<Self> {
         v.parse().ok()
     }
 }
 
+#[cfg(feature = "f16")]
 impl TryFromPatch<&str> for f16 {
     fn try_from_value(v: &str) -> Option<Self> {
         v.parse().ok()

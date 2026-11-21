@@ -1,6 +1,7 @@
 // use crate::TryFromPatch;
 
-// f32
+#[cfg(feature = "f16")]
+// f16
 crate::impl_try_from_patch_float!(
     f16, i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, usize, isize
 );

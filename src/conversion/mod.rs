@@ -23,10 +23,18 @@ macro_rules! impl_from_patch_self {
         )*
     };
 }
+#[cfg(feature = "f128")]
+impl_from_patch_self!(f128);
+#[cfg(feature = "f16")]
+impl_from_patch_self!(f16);
 impl_from_patch_self!(
-    u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f16, f32, f64, f128, bool, char
+    u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f32, f64, bool, char
 );
-mirl_extensions_core::impl_empty_trait!(AutoImplTryFromPatch for u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize,f16, f32, f64,f128, bool, char);
+#[cfg(feature = "f128")]
+mirl_extensions_core::impl_empty_trait!(AutoImplTryFromPatch for f128);
+#[cfg(feature = "f16")]
+mirl_extensions_core::impl_empty_trait!(AutoImplTryFromPatch for f16);
+mirl_extensions_core::impl_empty_trait!(AutoImplTryFromPatch for u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f32, f64, bool, char);
 
 // impl TryFromPatch<i128> for i128 {
 //     fn try_from_value(value: i128) -> Option<Self> {
